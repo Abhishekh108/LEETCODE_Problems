@@ -1,3 +1,5 @@
+
+
 class Solution {
     public String countAndSay(int n) {
         if(n==1) return "1";
@@ -26,6 +28,23 @@ class Solution {
         return ans;
     }
 }
+// // Handle the last group
+// int freq = j - i;
+// ans += freq;
+// ans += s.charAt(i);
+// Why is it needed?
+
+// Inside the loop, you only add a group when you find a different character.
+
+// if(s.charAt(i) == s.charAt(j))
+//     j++;
+// else {
+//     // Add previous group
+// }
+
+// But for the last group, there is no next different character to trigger the else block.
+
+// So after the loop finishes, the last group is still waiting to be added.
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
