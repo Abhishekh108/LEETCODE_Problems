@@ -11,7 +11,7 @@ class Solution {
 // 2147483647
         while(j<nums.length){
             sum=sum+nums[j];
-
+                        //last element *size
             while((long)nums[j]*(j-i+1)-sum> k){
                 sum=sum-nums[i];
                 i++;
