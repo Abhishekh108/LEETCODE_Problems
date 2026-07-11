@@ -13,7 +13,7 @@ class Solution {
                 return false;
             }
 
-            map.put(ele, map.get(ele) - 1);
+            map.put(ele, map.getOrDefault(ele, 0) - 1);
 
             if (map.get(ele) < 0) {
                 return false;
