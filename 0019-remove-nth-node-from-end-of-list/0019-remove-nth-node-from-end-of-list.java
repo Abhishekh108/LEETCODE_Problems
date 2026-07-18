@@ -16,6 +16,7 @@ class Solution {
         //using Two pointer formula
         ListNode slow=head;
         ListNode fast= head;
+        if(head.next==null) return null;  // only 1 element
         for(int i=0;i<n;i++){
             //if n=2 =>0 1 total 2 
             fast=fast.next;
@@ -29,14 +30,12 @@ class Solution {
         }
         if(fast == null){
             return head.next;
-        }
+        }  // if List: 1 -> 2 -> 3   n = 3
+          //           remove head
         
-        //[1,2,3,4,5-null]
-        //   s   f
-        if(head.next==null) return null;
-        // now slow is at the element -1  position to delete the element
-        //[1,2,3,4,5]
-        //     s
+
+        
+
         
         slow.next=slow.next.next;
         return head;
