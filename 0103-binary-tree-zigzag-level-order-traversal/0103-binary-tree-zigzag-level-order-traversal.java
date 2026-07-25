@@ -66,6 +66,8 @@ class Solution {
 
             // Add current level to answer
             ans.add(level);
+            // Add current level into final answer
+           // ans.addAll(level);  thsi is for GFG
 
             // Change direction for the next level
             leftToRight = !leftToRight;
