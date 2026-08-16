@@ -41,6 +41,39 @@ class Solution {
     }
 }
 
+// import java.util.*;
+
+// class Solution {
+//     public String frequencySort(String str) {
+
+//         HashMap<Character, Integer> map = new HashMap<>();
+
+//         for(char ch : str.toCharArray()) {
+//             map.put(ch, map.getOrDefault(ch, 0) + 1);
+//         }
+
+//         PriorityQueue<Character> pq = new PriorityQueue<>(
+//             (a, b) -> Integer.compare(map.get(b), map.get(a))
+//         );
+
+//         for(char ch : map.keySet()) {
+//             pq.add(ch);
+//         }
+
+//         StringBuilder ans = new StringBuilder();
+
+//         while(!pq.isEmpty()) {
+//             char ch = pq.poll();
+
+//             for(int i = 0; i < map.get(ch); i++) {
+//                 ans.append(ch);
+//             }
+//         }
+
+//         return ans.toString();
+//     }
+// }
+
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
 // Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
