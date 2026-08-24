@@ -12,24 +12,25 @@ class Solution {
         // sort index according to value/weight ratio
         Arrays.sort(arr, (a, b) ->
             Double.compare(
-                (double) val[b] / wt[b],
+                (double) val[b]/ wt[b],
                 (double) val[a] / wt[a]
             )
         );
 
         double ans = 0;
 
-        for (int i = 0; i < n; i++) {
-
-            int idx = arr[i];
-
-            if (wt[idx] <= capacity) {
-                ans += val[idx];
-                capacity -= wt[idx];
+        for(int i=0;i<n;i++){
+            if(wt[arr[i]]<=capacity &&capacity >0){
+                ans +=val[arr[i]];
+                capacity -= wt[arr[i]];
             }
-            else {
-                ans += ((double) val[idx] / wt[idx]) * capacity;
-                break;
+            else if(wt[arr[i]]>capacity && capacity >0){
+                //fractional part
+                //wt=100  profit=50
+                ans +=((double)val[arr[i]]/wt[arr[i]])*capacity;
+                capacity=0;
+                return ans;
+                
             }
         }
 
