@@ -5,7 +5,7 @@ class Solution {
 
         int start[]= new int [flowers.length];
         int end[]= new int [flowers.length];
-        for(int i=0;i<flowers.length;i++){
+        for(int i=0;i<flowers.length;i++){  // O(n)
             start[i]=flowers[i][0];
             end[i]=flowers[i][1];
         }
@@ -14,14 +14,12 @@ class Solution {
 
         
         
-        for(int i=0;i<people.length;i++){
-            int upperbond=upperbond(start,people[i]);
+        for(int i=0;i<people.length;i++){   //TC O(n)
+            int upperbond=upperbond(start,people[i]);  //  TC= 0(n)*O(log(n))==Nlog(N)
             int lowerbond=lowerbond(end,people[i]);
             ans[i]=upperbond-lowerbond;
         }
         
-
-
         // for (int i = 0; i < people.length; i++) {
 
         //     for (int j = 0; j < flowers.length; j++) {
