@@ -14,7 +14,8 @@ class Solution {
         int dp[]= new int[nums.length];
         Arrays.fill(dp,-1);
         return minamount(nums,0,dp);
-    }
+    }//nw the tabulation code
+    // dp[i]= max(arr[i]+dp[i-2], dp[i-1]);
 }
 
 // Synced seamlessly with LeetHub Pro
