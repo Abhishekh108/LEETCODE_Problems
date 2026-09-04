@@ -1,40 +1,34 @@
 class Solution {
     public int missingNumber(int[] arr) {
-        int i=0;
-        int n=arr.length; // bcz in while we are using <n and n is less then size of arr
+        int i=0; //
+        int n=arr.length;
         while(i<n){
+            // 0 to N element  (but 1 is missing)
+            // so if arr[i]= i or n go forward
+            // 0 1 2 6 4 5 n=6 (0-6) 3 is missing
             if(arr[i]==i || arr[i]==n){
                 i++;
             }
             else{
-                //[3,0,4,1]
-                // 0 1 2 3
-                int idx= arr[i];
-                swap(arr,i,idx);
+                //6 5 2 0 4 1
+                //  i       5
+                //swap(arr[i],arr[arr[i]])
+                int temp=arr[i];
+                 arr[i]=arr[temp];
+                arr[temp]=temp;
+
             }
         }
-        for(i=0;i<n;i++){
-            //[3,0,4,1]
-            // 0 1 2 3
-            // 0 1 4 3 swapped
-            if(arr[i] != i) return i;
+        for( int ele:arr){
+            System.out.println(ele);
         }
-    return n;
-         
+        for(i=0;i<arr.length;i++){
+            if(arr[i] != i){
+                return i;
+            }
+        }
+        return n;
     }
-    private void swap(int[] arr, int i, int idx) {
-        int temp = arr[i];
-        arr[i] = arr[idx];
-        arr[idx] = temp;
-    }
-    
-    // this is mistake bcz we have to change the element in arr so we have to pas arr also
-
-    // private void swap(int arr[i],int arr[idx]){
-    //     int temp= arr[i];
-    //     arr[i]= arr[idx];
-    //     arr[idx]=temp;
-    // }
 }
 
 // Synced seamlessly with LeetHub Pro
