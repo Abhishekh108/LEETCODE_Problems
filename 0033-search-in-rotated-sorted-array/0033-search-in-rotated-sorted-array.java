@@ -6,7 +6,7 @@ class Solution {
             int mid=low+(high-low)/2;
             if(arr[mid]==target) return mid;
 
-            else if(arr[mid]<arr[high]){
+            else if(arr[mid]<arr[high]){  // mid to high sorted
                 if(target>=arr[mid] && target<=arr[high]){
                     low=mid+1;
                 }
@@ -15,8 +15,8 @@ class Solution {
                 }
 
             }
-            else//(arr[mid]>arr[low]){
-                {
+            else//(arr[mid]>arr[low]){  
+            { //low to mid sorted
                 if(target>=arr[low] && target<=arr[mid]){
                     high=mid-1;
                 }
