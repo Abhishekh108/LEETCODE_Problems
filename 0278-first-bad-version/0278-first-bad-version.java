@@ -3,6 +3,11 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
+        // after the bad version all other are bad
+        //  1 2 3 4 5 6 7
+        //  L   M   b   H
+
+
         int low=0;
         int high=n;
         boolean flag;
