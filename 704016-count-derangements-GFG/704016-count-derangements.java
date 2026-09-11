@@ -2,8 +2,8 @@ class Solution {
     public int derangeCount(int n) {
         // code here
         int dp[]= new int [n+1];
-
-        if( n==1) return 0;
+        Arrays.fill(dp,-1);
+        if( n==1) return 0; //1+1=2  dp[0] dp[1] but we have given dp[2]
         dp[1]=0;
         dp[2]=1;
         if(n>2){
