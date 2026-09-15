@@ -1,7 +1,7 @@
 class Solution {
     public int numRescueBoats(int[] people, int limit) {
         Arrays.sort(people);
-        int left=0;
+        int left=0; //each boat can carries maximum of 2 people
         int right= people.length-1;
         int count =0;
         while(left<=right){
@@ -11,11 +11,10 @@ class Solution {
                 count++;
             }
             else{
-                // [1,2,2,3] limt=3
-                //  l     R
                 right--;
                 count++;
             }
+            
         }
         return count;
     }
