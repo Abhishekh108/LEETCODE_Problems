@@ -20,7 +20,7 @@ class Solution {
         double ans = 0;
 
         for(int i=0;i<n;i++){
-            if(wt[arr[i]]<=capacity &&capacity >0){
+            if(wt[arr[i]]<=capacity ){
                 ans +=val[arr[i]];
                 capacity -= wt[arr[i]];
             }
