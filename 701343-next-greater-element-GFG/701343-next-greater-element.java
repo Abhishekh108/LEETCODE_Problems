@@ -21,12 +21,12 @@ class Solution {
         for(int i=arr.length-1;i>=0;i--){
             if(stack.isEmpty()){
                 list.add(-1);
-                stack.push(arr[i]);
+                //stack.push(arr[i]);
             }
             else{
                 if(stack.peek()>arr[i]){
                     list.add(stack.peek());
-                    stack.push(arr[i]);
+                    //stack.push(arr[i]);
                 }
                 else{
                     while(!stack.isEmpty() &&stack.peek()<=arr[i]){
@@ -34,14 +34,15 @@ class Solution {
                     }
                     if(stack.isEmpty()) {
                         list.add(-1);
-                        stack.push(arr[i]);
+                        //stack.push(arr[i]);
                     }
                     else{
                         list.add(stack.peek());
-                        stack.push(arr[i]);
+                       // stack.push(arr[i]);
                     }
                 }
             }
+            stack.push(arr[i]);
         }
         int i=0; int j=list.size()-1;
         while(i<=j){
