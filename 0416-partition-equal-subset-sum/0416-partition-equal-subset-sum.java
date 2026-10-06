@@ -1,44 +1,51 @@
 class Solution {
-    public boolean partition(int i,int target,int []arr,Boolean dp[][]){
-            if(i==arr.length){
-                if(target==0)return true;
-                else return false;
+
+    public boolean canPartition(int[] nums) {
+
+        int totalSum = 0;
+
+        // Find total sum
+        for (int num : nums) {
+            totalSum += num;
+        }
+
+        // Odd sum cannot be divided equally
+        if (totalSum % 2 != 0) {
+            return false;
+        }
+
+        int targetSum = totalSum / 2;
+        int n = nums.length;
+
+        // dp[i][sum] = can we make 'sum' using first i elements?
+        boolean[][] dp = new boolean[n + 1][targetSum + 1];
+
+        // Sum 0 is always possible
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = true;
+        }
+
+        // First row is already false for sum > 0
+        // because 0 elements cannot make a positive sum
+
+        for (int i = 1; i <= n; i++) {
+
+            int currentNumber = nums[i - 1];
+
+            for (int sum = 1; sum <= targetSum; sum++) {
+
+                // Don't take current number
+                dp[i][sum] = dp[i - 1][sum];
+
+                // Take current number
+                if (currentNumber <= sum) {
+                    dp[i][sum] = dp[i][sum]
+                            || dp[i - 1][sum - currentNumber];
+                }
             }
-            if(target==0) return true;
+        }
 
-            if(dp[i][target] != null){
-                return dp[i][target];
-            }
-            //not already calculated
-            //skip
-
-            boolean skip=partition(i+1,target,arr,dp);
-
-            boolean take=false;
-            //take only if num<=target
-            if(arr[i]<=target){
-                take=partition(i+1,target-arr[i],arr,dp);
-            }
-            return dp[i][target]= take|| skip;
-
-
-        
-    }
-    public boolean canPartition(int[] arr) {
-        int sum=0;
-        for(int ele: arr) sum +=ele;
-
-        if(sum %2 !=0) return false;
-        int target=sum/2;
-        Boolean dp[][]= new Boolean[arr.length][target+1];
-
-        // for(int i=0;i<arr.lenght;i++){
-        //     for(int j=0;j<=target;j++){
-        //         dp[i][j]=-1;
-        //     }
-        // }
-        
-        return partition(0,target,arr,dp);
+        return dp[n][targetSum];
     }
 }
 
