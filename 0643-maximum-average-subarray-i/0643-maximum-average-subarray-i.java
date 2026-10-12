@@ -3,6 +3,7 @@ class Solution {
         
         double sum=0;
         double avg=0;
+        //k=k%arr.length;
         for(int i=0;i<k;i++){
             sum=sum+arr[i];
         }
