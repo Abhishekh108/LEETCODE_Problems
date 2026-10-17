@@ -14,31 +14,15 @@
  * }
  */
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        // to check symmetric
-        // invert the root.left
-        // now check if they are same then they are symmmetric
-        mirror(root.left); //to invert
-       return isSameTree(root.left,root.right);
-    }
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p==null && q==null) return true;
-        if(p==null || q==null) return false; //koi ek ho jaye 
-        if(p.val != q.val) return false;
-        return isSameTree(p.left ,q.left) && isSameTree(p.right,q.right);
-    }
-    public TreeNode mirror(TreeNode head) {
-        TreeNode root= head;
-        if( root == null){
-            return null;
-        }
-        TreeNode temp= root.left;
-        root.left=root.right;
-        root.right= temp;
-        mirror(root.left);
-        mirror(root.right);
-        return head;
+    public boolean identical(TreeNode r1, TreeNode r2){
+        if(r1== null && r2==null) return true;
+        if(r1==null || r2==null ) return false;
+        if(r1.val!=r2.val) return false;
 
+        return identical(r1.left,r2.right) && identical(r1.right,r2.left);
+    }
+    public boolean isSymmetric(TreeNode root) {
+        return identical(root.left,root.right);
     }
 }
 
