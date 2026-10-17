@@ -12,16 +12,29 @@ class Node {
 }*/
 
 class Solution {
-    int count=0;
+    int count=0; //global variable
+    
+    void solve(Node root){
+        if(root==null) return;
+        if(root.left ==null && root.right==null) count++;
+        solve(root.left);
+        solve(root.right);
+        
+        
+    }
     int countLeaves(Node root) {
-        // code here 
-        if(root==null) return count;
-        if(root.left==null && root.right==null) count++;
+        // code here  this is one method
+        //((( these are single way
+        // if(root==null) return count;
+        // if(root.left==null && root.right==null) count++;
         
-        count=countLeaves(root.left);
-        count=countLeaves(root.right);
+        // count=countLeaves(root.left);
+        // count=countLeaves(root.right);
         
-        return count;
+        // return count; )))))
+         
+         solve(root);
+         return count;
         
     }
 }
