@@ -15,39 +15,22 @@
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-
-        List<List<Integer>> ans = new ArrayList<>();
-
-        if (root == null)
-            return ans;
-
-        Queue<TreeNode> q = new LinkedList<>();
+        List<List<Integer>> ans= new ArrayList<>();
+        if(root==null) return ans;
+        Queue<TreeNode> q= new LinkedList<>();
         q.add(root);
+        while(!q.isEmpty()){
+            ArrayList<Integer> al= new ArrayList<>();
+            int n= q.size();
+            for(int i=0;i<n;i++){
+                TreeNode curr= q.poll();
+                al.add(curr.val);
+                if(curr.left!=null) q.add(curr.left);
+                if(curr.right!=null) q.add(curr.right);
 
-        while (!q.isEmpty()) {
-
-            int size = q.size();
-
-            // Create ONE list for the whole level
-            List<Integer> level = new ArrayList<>();
-
-            for (int i = 0; i < size; i++) {
-
-                TreeNode temp = q.remove();
-
-                level.add(temp.val);
-
-                if (temp.left != null)
-                    q.add(temp.left);
-
-                if (temp.right != null)
-                    q.add(temp.right);
             }
-
-            // Insert this level at the beginning
-            ans.add(0, level);
+            ans.add(0,al);  //keep the last at front each time;
         }
-
         return ans;
     }
 }
