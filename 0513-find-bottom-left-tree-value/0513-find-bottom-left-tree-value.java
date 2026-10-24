@@ -14,24 +14,21 @@
  * }
  */
 class Solution {
+    int lev=-1;
+    int ans=0;
     public int findBottomLeftValue(TreeNode root) {
-        int[] arr = new int[2];
-        arr[0]=0 ;//arr[0]=ans
-        arr[1]=-1;//arr[1]=maxlevel
-        solve(root,arr,0);
-        return arr[0];
+        if(root==null) return -1;
+         leftvalue(root,0);
+         return ans;
     }
-    public void solve(TreeNode root,int arr[], int level){
-        if(root==null) return;
-
-        if(level> arr[1]){
-            arr[1]=level;
-            arr[0]=root.val;
-
+    public void leftvalue(TreeNode root,int level){
+        if(root==null) return ;
+        if(lev<level){
+             ans=root.val;
+            lev=level;
         }
-        solve(root.left,arr,level+1);
-        solve(root.right,arr,level+1);
-
+        leftvalue(root.left, level+1);
+        leftvalue(root.right,level+1);
     }
 }
 
