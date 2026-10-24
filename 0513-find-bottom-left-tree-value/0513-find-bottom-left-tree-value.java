@@ -14,21 +14,22 @@
  * }
  */
 class Solution {
-    int lev=-1;
-    int ans=0;
     public int findBottomLeftValue(TreeNode root) {
-        if(root==null) return -1;
-         leftvalue(root,0);
-         return ans;
-    }
-    public void leftvalue(TreeNode root,int level){
-        if(root==null) return ;
-        if(lev<level){
-             ans=root.val;
-            lev=level;
+        int ans=-1;
+        Queue<TreeNode> q= new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size=q.size();
+            for(int i=0;i<size;i++){
+                TreeNode curr= q.poll();
+                if(curr.left!=null) q.add(curr.left);
+                if(curr.right!=null) q.add(curr.right);
+
+                //main
+                if(i==0) ans=curr.val;
+            }
         }
-        leftvalue(root.left, level+1);
-        leftvalue(root.right,level+1);
+        return ans;
     }
 }
 
