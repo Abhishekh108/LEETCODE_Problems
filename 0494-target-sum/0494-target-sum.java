@@ -19,6 +19,7 @@ class Solution {
         int add=solve(i+1,nums,target+nums[i],dp);
         int sub=solve(i+1,nums,target-nums[i],dp);
         return dp[i][target+sum]=add+sub;
+        //its actually ->dp[i][target]=add+sub;
     }
     public int findTargetSumWays(int[] nums, int target) {
         for(int ele :nums){
