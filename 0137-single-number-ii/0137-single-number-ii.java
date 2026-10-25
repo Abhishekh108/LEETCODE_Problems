@@ -1,14 +1,19 @@
 class Solution {
-    public int singleNumber(int[] arr) {
-        if(arr.length==1) return arr[0];
-        Arrays.sort(arr);
-        if(arr[0] !=arr[1]) return arr[0];
-        if(arr[arr.length-1] !=arr[arr.length-2]) return arr[arr.length-1];
-        for(int i=1;i<arr.length;i=i+3){
-            if(arr[i] !=arr[i-1]) return arr[i-1];
+    public int singleNumber(int[] nums) {
+        //count the no. of 1 in  each places
+        int ans=0;
+        for(int i=0;i<32;i++){
+            int count =0;
+            for(int num: nums){
+                if((num & (1<<i)) !=0){
+                    count++;
+                }
+            }
+            if(count %3 !=0){
+                ans= ans | (1<<i);
+            }
         }
-
-    return -1;
+        return ans;
     }
 }
 
