@@ -16,7 +16,7 @@ class Solution {
                     row++;
                     upward=false;
                 } 
-                else if(row<=0){
+                else if(row==0){
                     col++;
                     upward= false;
                 }
