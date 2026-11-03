@@ -15,17 +15,19 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        //Note: A binary tree is considered height-balanced if the absolute difference in heights of the left and right subtrees is at most 1 for every node in the tree.
         if(root==null) return true;
-        int leftlevel= level(root.left);
-        int rightlevel= level(root.right);
-        if(Math.abs(leftlevel-rightlevel)>1) return false;
-        return isBalanced(root.left) && isBalanced(root.right);
 
+        int left_height= height(root.left);
+        int right_height= height(root.right);
+        if(Math.abs(left_height-right_height)>1) return false;
+        
+        
+
+        return isBalanced(root.left) && isBalanced(root.right);
     }
-    public int level(TreeNode root){
+    public int height(TreeNode root){
         if(root==null) return 0;
-        return 1+ Math.max(level(root.left),level(root.right));
+        return 1+Math.max(height(root.left),height(root.right));
     }
 }
 
