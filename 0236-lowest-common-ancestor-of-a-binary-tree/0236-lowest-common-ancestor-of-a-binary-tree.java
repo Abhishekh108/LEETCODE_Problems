@@ -9,30 +9,23 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root==null) return null;
-        if(root==p ||root==q)return root;
-
-        //check if p present in left
-        boolean pinleft=ispresent(root.left,p);
-        boolean qinleft=ispresent(root.left,q);
-
-        // if(pinleft && !qinleft){ //q right
-        //     return root;
-        // }
-        if(pinleft && qinleft){
-          return   lowestCommonAncestor(root.left,p,q);
+        // Base case
+        if(root == null || root == p || root == q) {
+            return root;
         }
-        else if(!pinleft && !qinleft){
-           return  lowestCommonAncestor(root.right,p,q);
+        // Check left subtree
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        // Check right subtree
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        // If both are not null, root is the LCA
+        if(left != null && right != null) {
+            return root;
         }
-        // if(!pinleft && qinleft) return root;
-        // return null;
-        return root;
-    }
-    public boolean ispresent(TreeNode root, TreeNode x){
-        if(root==null) return false;
-        if(root==x) return true;
-        return  ispresent(root.left,x) || ispresent(root.right,x);
+        // Otherwise return the non-null subtree
+        if(left != null) {
+            return left;
+        }
+        return right;
     }
 }
 
