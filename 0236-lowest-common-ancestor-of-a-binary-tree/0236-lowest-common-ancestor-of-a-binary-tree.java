@@ -10,23 +10,29 @@
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root==null) return null;
-        if(root==p || root ==q) return root; //if one is root then common is root
-        boolean pliesinleft=exists(root.left,p);
-        boolean qliesinleft=exists(root.left,q);
-        // if p lies in left and q lies in left
-        if(pliesinleft && qliesinleft){
-          return  lowestCommonAncestor(root.left,p,q);
-        }
-        else if( !pliesinleft && !qliesinleft){
-           return lowestCommonAncestor(root.right,p,q);
-        }
-        return  root;
+        if(root==p ||root==q)return root;
 
+        //check if p present in left
+        boolean pinleft=ispresent(root.left,p);
+        boolean qinleft=ispresent(root.left,q);
+
+        // if(pinleft && !qinleft){ //q right
+        //     return root;
+        // }
+        if(pinleft && qinleft){
+          return   lowestCommonAncestor(root.left,p,q);
+        }
+        else if(!pinleft && !qinleft){
+           return  lowestCommonAncestor(root.right,p,q);
+        }
+        // if(!pinleft && qinleft) return root;
+        // return null;
+        return root;
     }
-    public boolean exists(TreeNode root, TreeNode val){
+    public boolean ispresent(TreeNode root, TreeNode x){
         if(root==null) return false;
-        if(root==val)return true;
-        return exists(root.left,val) || exists(root.right,val);
+        if(root==x) return true;
+        return  ispresent(root.left,x) || ispresent(root.right,x);
     }
 }
 
