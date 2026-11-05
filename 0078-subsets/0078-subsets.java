@@ -1,18 +1,28 @@
 class Solution {
-    public List<List<Integer>> subsets(int[] arr) {
-        int n=arr.length;
-        int m=(1<<n);
-        List<List<Integer>> ans= new ArrayList<>();
-        for(int i=0;i<m;i++){
-            ArrayList<Integer> a= new ArrayList<>();
-            for(int j=0;j<n;j++){
-                if((i>>j) % 2==1){ //find 1 position
-                    a.add(arr[j]);
-                }
-            }
-            ans.add(a);
-        }
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer>temp = new ArrayList<>();
+        helper(nums,0,ans,temp);
         return ans;
+    }
+    public void helper(int []arr,int idx,List<List<Integer>> ans,List<Integer> temp){
+        //base
+        if(idx==arr.length){
+            ans.add(new ArrayList(temp));
+            return ;
+        }
+        //explore
+        temp.add(arr[idx]);
+        helper(arr,idx+1,ans,temp);
+
+        //backtracking
+        temp.remove(temp.size()-1);
+        helper(arr,idx+1,ans,temp);
+        
+
+
+        
+        
     }
 }
 
