@@ -1,31 +1,36 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
-        HashSet<ArrayList<Integer>>set =new HashSet<>();
+        List<List<Integer>> ans= new ArrayList<>();
+        List<Integer> temp= new ArrayList<>();
+        boolean []visited= new boolean[nums.length];
+        Arrays.sort(nums);
 
-        boolean visited[]= new boolean[nums.length];
-        ArrayList<Integer> temp= new ArrayList<>();
-        helper(nums,set,temp,visited);
-        List<List<Integer>> ans= new ArrayList<>(set);
+        solve(nums,temp, ans,visited);
         return ans;
     }
-    public void helper(int []arr,HashSet<ArrayList<Integer>>set ,ArrayList<Integer> temp,boolean[] visited){
-        //base
+    public void solve(int []arr,List<Integer> temp,List<List<Integer>> ans,boolean visited[]){
         if(temp.size()==arr.length){
-            set.add(new ArrayList(temp));
-            return ;
+            ans.add(new ArrayList(temp));
+            return;
         }
-        //explore 
+        //explore
         for(int i=0;i<arr.length;i++){
             if(visited[i]==true) continue;
+            if(i>0 && arr[i]==arr[i-1] && !visited[i-1]) continue;
+            //[1,1,2]
+            //   i
+            //when the i=1 jab recursion start hua ho  all false  tab continue bcz earlier 1 se same ans aya
+
             temp.add(arr[i]);
             visited[i]=true;
-            helper(arr,set,temp,visited);
+            
+            solve(arr,temp,ans,visited);
+
             temp.remove(temp.size()-1);
             visited[i]=false;
-        }
 
-        //backtracking
-        //remove
+            
+        }
     }
 
 }
