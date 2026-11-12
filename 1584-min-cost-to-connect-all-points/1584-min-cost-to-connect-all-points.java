@@ -1,41 +1,34 @@
 class Solution {
     public int minCostConnectPoints(int[][] points) {
         int n = points.length;
-        int[][] cost = new int[n][n];
         boolean[] visited = new boolean[n];
+        int[] minCost = new int[n];
 
-        // Build the cost matrix
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                cost[i][j] = Math.abs(points[i][0] - points[j][0])
-                        + Math.abs(points[i][1] - points[j][1]);
-            }
-        }
+        Arrays.fill(minCost, Integer.MAX_VALUE);
+        minCost[0] = 0;
 
-        visited[0] = true;
-        int edge = 0;
         int total = 0;
 
-        while (edge < n - 1) {
-            int min = Integer.MAX_VALUE;
+        for (int count = 0; count < n; count++) {
             int u = -1;
-            int v = -1;
 
             for (int i = 0; i < n; i++) {
-                if (visited[i]) {
-                    for (int j = 0; j < n; j++) {
-                        if (!visited[j] && cost[i][j] < min) {
-                            min = cost[i][j];
-                            u = i;
-                            v = j;
-                        }
-                    }
+                if (!visited[i] && (u == -1 || minCost[i] < minCost[u])) {
+                    u = i;
                 }
             }
 
-            visited[v] = true;
-            total += min;
-            edge++;
+            visited[u] = true;
+            total += minCost[u];
+
+            for (int v = 0; v < n; v++) {
+                if (!visited[v]) {
+                    int distance = Math.abs(points[u][0] - points[v][0])
+                            + Math.abs(points[u][1] - points[v][1]);
+
+                    minCost[v] = Math.min(minCost[v], distance);
+                }
+            }
         }
 
         return total;
