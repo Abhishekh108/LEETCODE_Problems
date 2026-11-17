@@ -1,42 +1,41 @@
 class Solution {
+    int er;
+    int ec;
     public ArrayList<String> ratInMaze(int[][] maze) {
         // code here
-        int er=maze.length-1;
-        int ec=maze[0].length-1;
-        boolean visited[][]= new boolean[maze.length][maze.length];
-        ArrayList<String>ans= new ArrayList<>();
-        solve(0,0,er,ec,visited,maze,"" ,ans);
-        Collections.sort(ans);
+        er=maze.length-1;
+        ec=maze[0].length-1;
+        ArrayList<String> ans = new ArrayList<>();
+        
+        if(maze[er][ec]==0) return ans;
+        
+        solve(maze,0,0,ans,"");
         return ans;
-
+        
     }
-    public void solve(int r, int c,int er, int ec,boolean visited[][],int maze[][],String temp,ArrayList<String>ans){
-
-        //base for invalid 
-        //1= rat can move
-        //0= rat cannot move
-        if(r>er || c>ec || r<0 || c<0 || visited[r][c] || maze[r][c]==0){
-            //if visited == true 
+    public void solve(int maze[][],int r, int c,ArrayList<String> ans,String temp){
+        
+        /// base
+        if(r<0 || c<0 || r>er ||c>ec) return ;
+        
+        if(r==er && c==ec){
+            ans.add(temp);
             return ;
         }
-       visited[r][c]=true;
-       
-       //base
-       if(r==er && c==ec){
-           visited[r][c]=false;
-           ans.add(temp);
-           return ;
-           
-       }
-        solve(r,c-1,er,ec,visited,maze,temp+'L',ans);
-        solve(r,c+1,er,ec,visited,maze,temp+'R',ans);
-        solve(r-1,c,er,ec,visited,maze,temp+'U',ans);
-        solve(r+1,c,er,ec,visited,maze,temp+'D',ans);
         
-        visited[r][c]= false;
+        if(maze[r][c]==0) return ;
         
-
-
+        if(maze[r][c]==1){
+            maze[r][c]=0;
+            solve(maze, r+1,c,ans,temp+"D");
+            solve(maze, r-1,c,ans,temp+"U");
+            solve(maze, r,c+1,ans,temp+"R");
+            solve(maze, r,c-1,ans,temp+"L");
+            
+            maze[r][c]=1;
+            
+        }
+        
     }
 }
 
