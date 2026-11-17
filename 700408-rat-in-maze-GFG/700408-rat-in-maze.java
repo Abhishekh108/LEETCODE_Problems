@@ -10,6 +10,7 @@ class Solution {
         if(maze[er][ec]==0) return ans;
         
         solve(maze,0,0,ans,"");
+        Collections.sort(ans);
         return ans;
         
     }
